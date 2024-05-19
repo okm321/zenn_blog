@@ -3,7 +3,7 @@ title: "data-testidをrole='group'に置き換えてみたら、テスタビリ�
 emoji: "🦑"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["jest", "react", "testinglibrary", "a11y"]
-published: false
+published: true
 ---
 
 # はじめに
