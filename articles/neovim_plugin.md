@@ -4,7 +4,6 @@ emoji: "🐗"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["neovim", "vim"]
 published: true
-publication_name: "vim-jp"
 ---
 
 :::message
@@ -102,6 +101,14 @@ https://github.com/LudoPinelli/comment-box.nvim
 
 ![comment-boxのサンプル](/images/neovim-plugin/comment-box.gif)
 
+### dial
+
+https://github.com/monaqa/dial.nvim
+
+`<C-a>`と`<C-x>`のインクリメント/デクリメントを拡張できるプラグインです！数字はもちろん、日付やカスタマイズした文字列も対応できます！私は日付の他に、`&&`と`||`を変更できるようにしているのと、よく環境ごとでsuffixを変えたりするので、`local`, `dev`, `qa`, `prd`も設定しています！
+
+![dialのサンプル](/images/neovim-plugin/dial.gif)
+
 ## 検索系のプラグイン
 
 ### grug-far.nvim
@@ -144,7 +151,15 @@ LSPからの診断情報を表示しれくれるプラグインです！デザ�
 
 ![tiny-inline-diagnosticのサンプル](/images/neovim-plugin/tiny-inline-diagnostic.gif)
 
-### markdwonview.nvim
+### vim-doge
+
+https://github.com/kkoomen/vim-doge?tab=readme-ov-file
+
+関数やクラスのコメントを自動生成してくれるプラグインです！自分はTypeScriptを書く時に重宝しています！
+
+![vim-dogeのサンプル](/images/neovim-plugin/vim-doge.gif)
+
+### markview.nvim
 
 https://github.com/OXY2DEV/markview.nvim
 
