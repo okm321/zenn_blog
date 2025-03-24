@@ -1,0 +1,59 @@
+name: Trigger okmkm-blog app Rebuild When Feed Updates
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "articles/**"
+  workflow_dispatch:
+
+jobs:
+  check-feed-and-trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get initial lastBuildDate
+        id: initial-date
+        run: |
+          FEED_URL="https://zenn.dev/okmkm321/feed"
+          INITIAL_DATE=$(curl -s $FEED_URL | grep -oP '<lastBuildDate>\K[^<]+')
+          echo "initial_date=$INITIAL_DATE" >> $GITHUB_OUTPUT
+          echo "initial lastBuildDate: $INITIAL_DATE"
+
+      - name: Wait and check for feed update
+        id: check-update
+        run: |
+          FEED_URL="https://zenn.dev/okmkm321/feed"
+          INITIAL_DATE=${{ steps.initial-date.outputs.initial_date }}
+          MAX_ATTEMPTS=30
+
+          echo "フィードの更新を監視します。"
+
+          for ((i=1; i<=$MAX_ATTEMPTS; i++))
+          do
+            echo "試行 $i/$MAX_ATTEMPTS"
+            sleep 30
+
+            CURRENT_DATE=$(curl -s $FEED_URL | grep -oP '<lastBuildDate>\K[^<]+')
+            echo "現在の lastBuildDate: $CURRENT_DATE"
+
+            if [ "$CURRENT_DATE" != "$INITIAL_DATE" ]; then
+              echo "フィードが更新されました。"
+              echo "updated=true" >> $GITHUB_OUTPUT
+              echo "lastBuildDate=$CURRENT_DATE" >> $GITHUB_OUTPUT
+              break
+            fi
+          done
+
+          if [ "$CURRENT_DATE" = "$INITIAL_DATE"]; then
+            echo "updaetd=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger blog repository rebuild
+        if: ${{ steps.heck-update.outputs.updated == 'true' }}
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          repository: okm321/okmkm-blog
+          event-type: zenn-feed-updated
+          client-payload: '{"lastBuildDate": "${{ steps.check-update.outputs.lastBuildDate }}"}'
