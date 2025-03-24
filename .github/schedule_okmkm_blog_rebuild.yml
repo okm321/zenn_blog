@@ -1,0 +1,25 @@
+name: Schedule okmkm-blog app Rebuild
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "articles/**"
+      - "images/**"
+
+jobs:
+  schedule-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current time
+        id: current-time
+        run: echo "timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_OUTPUT
+
+      - name: Dispatch blog rebuild
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          repository: okm321/okmkm-blog
+          event-type: delayed-zenn-update
+          client-payload: '{"schedule_time": "${{ steps.current-time.outputs.timestamp }}"}'
