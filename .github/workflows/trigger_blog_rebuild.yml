@@ -46,7 +46,7 @@ jobs:
           done
 
           if [ "$CURRENT_DATE" = "$INITIAL_DATE" ]; then
-            echo "updaetd=false" >> $GITHUB_OUTPUT
+            echo "updated=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Trigger blog repository rebuild
