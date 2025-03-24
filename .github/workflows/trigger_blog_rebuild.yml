@@ -24,7 +24,7 @@ jobs:
         id: check-update
         run: |
           FEED_URL="https://zenn.dev/okmkm321/feed"
-          INITIAL_DATE=${{ steps.initial-date.outputs.initial_date }}
+          INITIAL_DATE="${{ steps.initial-date.outputs.initial_date }}"
           MAX_ATTEMPTS=30
 
           echo "フィードの更新を監視します。"
@@ -50,7 +50,7 @@ jobs:
           fi
 
       - name: Trigger blog repository rebuild
-        if: ${{ steps.heck-update.outputs.updated == 'true' }}
+        if: ${{ steps.check-update.outputs.updated == 'true' }}
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.PAT_TOKEN }}
