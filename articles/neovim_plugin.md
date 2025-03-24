@@ -1,7 +1,7 @@
 ---
 title: "Neovimを使い始めて半年経った若輩Vimmerが愛用しているプラグインの紹介"
 emoji: "🐗"
-type: "tech" # tech: 技術記事 / idea: アイデア
+type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["neovim", "vim"]
 published: true
 ---
@@ -18,7 +18,7 @@ published: true
 https://github.com/okm321/dotfiles/tree/main/nvim/lua/plugins
 
 :::message
-Telescopeやnvim-lspなどの王道プラグインは割愛します
+Telescopeやnvim-lspなどの王道プラグインは割愛します！
 :::
 
 ## UI系のプラグイン
