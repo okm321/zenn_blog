@@ -56,4 +56,3 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
           repository: okm321/okmkm-blog
           event-type: zenn-feed-updated
-          client-payload: '{"lastBuildDate": "${{ steps.check-update.outputs.lastBuildDate }}"}'
