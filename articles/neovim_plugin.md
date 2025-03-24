@@ -1,5 +1,5 @@
 ---
-title: "Neovimを使い始めて半年経った若輩Vimmerが愛用しているプラグイン紹介"
+title: "Neovimを使い始めて半年経った若輩Vimmerが愛用しているプラグインの紹介"
 emoji: "🐗"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["neovim", "vim"]
